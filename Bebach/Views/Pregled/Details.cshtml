@@ -1,0 +1,74 @@
+﻿@model BebachModel.Pregled
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Pregled</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Datum)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Datum)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Opis)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Opis)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Visina)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Visina)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Tezina)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Tezina)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Bolesti)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Bolesti)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.OpsegGlave)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.OpsegGlave)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Beba.Ime)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Beba.Ime)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.ID }) |
+    @Html.ActionLink("Back to List", "Index", new { bebaID = Model.BebaID })
+</p>

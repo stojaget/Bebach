@@ -1,0 +1,50 @@
+﻿@model BebachModel.Slika
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Slika</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Opis)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Opis)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Putanja_Thumb)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Putanja_Thumb)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Putanja_Slika)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Putanja_Slika)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Dat_kreiranja)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Dat_kreiranja)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.ID }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

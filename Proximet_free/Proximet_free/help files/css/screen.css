@@ -1,0 +1,153 @@
+/****************************** MAIN STYLES - backgorund,deviders ******************************/
+
+/* Main Container */
+img, embed, object, video {
+	max-width: 100%
+}
+/* Deviders */
+div.line {
+	height: 6px;
+	background:url(../images/separator.png) 0 0 no-repeat;
+	border-top:2px solid #bfd6e4;
+	display: block;
+	margin:0;
+}
+div.boxsep {
+	height: 4px;
+	background:#e1e8ed;
+	border-left:20px solid #bfd6e4;
+	display: block;
+	margin: 20px 0;
+}
+div.sepline1 {
+	height: 2px;
+	background: white;
+	display: block;
+	margin: 2px 0;
+}
+div.blankSeparator {
+	height: 1px;
+	margin:20px 0;
+	display: block;
+}
+/****************************** HOME - Content Part - Logo&Menu ******************************/
+
+/* Header - Logo & Menu */
+.contentheader {
+	background:#bfd6e4;
+	margin-top:0px;
+	border-bottom:1px solid #6d8696;
+}
+.logo {
+	padding-top:10px;
+}
+.logotext {
+	color:#414558;
+	margin-bottom:10px;
+}
+.five.columns p {
+	color:#bfd6e4;
+}
+/****************************** HOME - Content Part - Breadcrumbs & Socials ******************************/
+.titlepart {
+	float:right;
+	margin-top:30px;
+	color: #414558;
+	font-weight:bold;
+}
+.titlepart a {
+	color: #fff;
+}
+p.thanks {
+	font-size:15px;
+	font-style:italic;
+	font-weight:bold;
+	margin-top:20px;
+	text-align:center;
+}
+/****************************** HOME - Content Part - Box One ******************************/
+.homecontent {
+	background:white;
+	padding:20px 0px;
+}
+.homecontent h2, .homecontent h3 {
+	color:#414558;
+}
+.homecontent p {
+	color:#483844;
+}
+.homecontent h3 {
+	background:url(../images/raster.png) left center no-repeat;
+	padding:0 0 0 15px;
+	margin-top:20px;
+	font-weight:bold;
+	margin-bottom:20px;
+}
+.homecontent ul {
+	color:#414558;
+}
+span.plus {
+	color:#414558;
+	font-weight: bold;
+	padding:0 5px;
+	font-size:18px;
+	margin:0 5px;
+}
+span.color {
+	color:#414558;
+	background:#bfd6e4;
+	padding:5px;
+	font-weight:bold;
+}
+pre {
+	color:#414558;
+}
+.credits a {
+	color:#414558;
+}
+.homecontent h2.header {
+	background:#bfd6e4;
+	padding:5px;
+}
+/* Content Shortcodes */
+.one_half {
+	width: 48%;
+}
+.one_third {
+	width: 30.66%;
+}
+.two_third {
+	width: 65.33%;
+}
+.one_fourth {
+	width: 22%;
+}
+.one_fifth {
+	width: 16.8%;
+}
+.one_sixth {
+	width: 15%;
+}
+.one_half, .one_third, .two_third, .one_fourth, .one_fifth {
+	margin-right: 4%;
+	margin-bottom: 10px;
+	float: left;
+}
+.one_sixth {
+	margin-right: 2%;
+	margin-bottom:20px;
+	float: left;
+}
+.lastcolumn {
+	margin-right: 0!important;
+	clear: right;
+}
+/* #Page Styles
+================================================== */
+
+.content {
+	padding-top: 20px;
+}
+.content.right {
+	float: right;
+}

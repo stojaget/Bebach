@@ -1,0 +1,141 @@
+﻿@model BebachModel.Beba
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Pregled podataka</h2>
+
+<div>
+    <h4>Beba</h4>
+    <hr />
+  
+        <dl class="dl-horizontal">
+            <dt>
+                @Html.DisplayNameFor(model => model.Ime)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.Ime)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.Prezime)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.Prezime)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.Dat_rod)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.Dat_rod)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.OIB)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.OIB)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.Adresa)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.Adresa)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.Majka)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.Majka)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.Otac)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.Otac)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.Dat_kreiranja)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.Dat_kreiranja)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.Dat_azu)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.Dat_azu)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.Unio)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.Unio)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.Aktivan)
+            </dt>
+
+            <dd>
+                @if (Model.Aktivan != null)
+            {
+                    @Html.YesNo(Model.Aktivan)
+                }
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.Racun)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.Racun)
+            </dd>
+            <dt class="panel-title">
+                @Html.DisplayNameFor(model => model.Aktivnosts)
+            </dt>
+
+            <dd>
+                <table class="table">
+                    <tr>
+                        <th>Naziv</th>
+                        <th>Datum</th>
+                    </tr>
+                    @foreach (var item in Model.Aktivnosts)
+                    {
+                        <tr>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Opis)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Datum)
+                            </td>
+                        </tr>
+                    }
+                </table>
+            </dd>
+        </dl>
+    
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.ID }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

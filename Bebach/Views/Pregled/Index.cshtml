@@ -1,0 +1,101 @@
+﻿@model IEnumerable<BebachModel.Pregled>
+
+@{
+    ViewBag.Title = "Index";
+}
+<h2>Pregledi bebe</h2>
+
+@{
+    var bebaID = ViewBag.BebaID;
+    
+    var datOd = ViewBag.datOd != null ? (DateTime)ViewBag.datOd : DateTime.Now.AddMonths(-1);
+    var datDo = ViewBag.datDo != null ? (DateTime)ViewBag.datDo : DateTime.Now.AddMonths(1);
+}
+@using (Html.BeginForm("Search", "Pregled", new { bebaID = bebaID, datOd = datOd, datDo = datDo }, FormMethod.Post))
+{
+    <div class="form-group" style="position: relative">
+        Traženje po datumu od: @Html.TextBox("datOd", datOd, new { @class = "DatePicker" }) do @Html.TextBox("datDo", datDo, new { @class = "DatePicker" })
+
+        <button type="submit" value="Traži" class="btn btn-success">
+            <span class="glyphicon glyphicon-search"></span>
+        </button>
+    </div>
+}
+<p>
+    @Html.ActionLink("Dodaj novu", "Create", new { bebaID = ViewBag.BebaID })
+</p>
+<table class="table">
+    <tr class="success">
+        <th>
+            @Html.ActionLink("Datum", "Index", new { bebaID = ViewBag.BebaID, sortOrder = ViewBag.DateSortParm, currentFilter = ViewBag.CurrentFilter })
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Opis)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Visina)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Tezina)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Bolesti)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.OpsegGlave)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Beba.Ime)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Datum)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Opis)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Visina)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Tezina)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Bolesti)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.OpsegGlave)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Beba.Ime)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.ID }) |
+            @Html.ActionLink("Details", "Details", new { id=item.ID }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.ID })
+        </td>
+    </tr>
+}
+
+</table>
+@section scripts {
+    <script type="text/javascript">
+        $(function () {
+
+            $('.DatePicker').datetimepicker({
+                locale: 'hr',
+
+                format: 'L',
+                showClose: true,
+                showClear: true,
+                toolbarPlacement: 'top'
+            });
+
+        });
+    </script>
+    @Scripts.Render("~/bundles/jqueryval")
+}

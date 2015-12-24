@@ -1,0 +1,461 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="BebachModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Aktivnost">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Datum" Type="datetime" />
+          <Property Name="Opis" Type="nvarchar(max)" />
+          <Property Name="TrajanjeOd" Type="datetime" Nullable="false" />
+          <Property Name="TrajanjeDo" Type="datetime" />
+          <Property Name="BebaID" Type="int" Nullable="false" />
+          <Property Name="VrstaID" Type="int" Nullable="false" />
+          <Property Name="Cijena" Type="decimal" Precision="10" Scale="2" />
+        </EntityType>
+        <EntityType Name="Beba">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Ime" Type="nvarchar" MaxLength="150" Nullable="false" />
+          <Property Name="Prezime" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="Dat_rod" Type="datetime" />
+          <Property Name="OIB" Type="char" MaxLength="11" />
+          <Property Name="Adresa" Type="nvarchar(max)" />
+          <Property Name="Majka" Type="nvarchar" MaxLength="150" />
+          <Property Name="Otac" Type="nvarchar" MaxLength="150" />
+          <Property Name="Dat_kreiranja" Type="datetime" />
+          <Property Name="Dat_azu" Type="datetime" />
+          <Property Name="Unio" Type="nvarchar" MaxLength="50" />
+          <Property Name="Aktivan" Type="bit" />
+          <Property Name="Racun" Type="nvarchar" MaxLength="100" />
+        </EntityType>
+        <EntityType Name="ELMAH_Error">
+          <Key>
+            <PropertyRef Name="ErrorId" />
+          </Key>
+          <Property Name="ErrorId" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="Application" Type="nvarchar" MaxLength="60" Nullable="false" />
+          <Property Name="Host" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Type" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="Source" Type="nvarchar" MaxLength="60" Nullable="false" />
+          <Property Name="Message" Type="nvarchar" MaxLength="500" Nullable="false" />
+          <Property Name="User" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="StatusCode" Type="int" Nullable="false" />
+          <Property Name="TimeUtc" Type="datetime" Nullable="false" />
+          <Property Name="Sequence" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="AllXml" Type="ntext" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Info">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Sadrzaj" Type="nvarchar(max)" />
+          <Property Name="Kategorija" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="Pregled">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Datum" Type="datetime" />
+          <Property Name="Opis" Type="nvarchar(max)" />
+          <Property Name="Visina" Type="numeric" Precision="5" Scale="2" />
+          <Property Name="Tezina" Type="numeric" Precision="5" Scale="2" />
+          <Property Name="Bolesti" Type="nvarchar(max)" />
+          <Property Name="OpsegGlave" Type="decimal" Precision="5" Scale="2" />
+          <Property Name="BebaID" Type="int" />
+        </EntityType>
+        <EntityType Name="Slika">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Opis" Type="nvarchar(max)" />
+          <Property Name="Putanja_Thumb" Type="nvarchar(max)" />
+          <Property Name="Putanja_Slika" Type="nvarchar(max)" />
+          <Property Name="Dat_kreiranja" Type="datetime" />
+          <Property Name="BebaID" Type="int" />
+        </EntityType>
+        <EntityType Name="VrstaAkt">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Vrsta" Type="nvarchar(max)" />
+        </EntityType>
+        <Association Name="FK_Aktivnost_Beba">
+          <End Role="Beba" Type="Self.Beba" Multiplicity="1" />
+          <End Role="Aktivnost" Type="Self.Aktivnost" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Beba">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Aktivnost">
+              <PropertyRef Name="BebaID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Aktivnost_VrstaAkt">
+          <End Role="VrstaAkt" Type="Self.VrstaAkt" Multiplicity="1" />
+          <End Role="Aktivnost" Type="Self.Aktivnost" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="VrstaAkt">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Aktivnost">
+              <PropertyRef Name="VrstaID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Pregled_Beba">
+          <End Role="Beba" Type="Self.Beba" Multiplicity="0..1" />
+          <End Role="Pregled" Type="Self.Pregled" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Beba">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Pregled">
+              <PropertyRef Name="BebaID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Slika_Slika">
+          <End Role="Beba" Type="Self.Beba" Multiplicity="0..1" />
+          <End Role="Slika" Type="Self.Slika" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Beba">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Slika">
+              <PropertyRef Name="BebaID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="BebachModelStoreContainer">
+          <EntitySet Name="Aktivnost" EntityType="Self.Aktivnost" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Beba" EntityType="Self.Beba" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ELMAH_Error" EntityType="Self.ELMAH_Error" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Info" EntityType="Self.Info" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Pregled" EntityType="Self.Pregled" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Slika" EntityType="Self.Slika" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="VrstaAkt" EntityType="Self.VrstaAkt" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_Aktivnost_Beba" Association="Self.FK_Aktivnost_Beba">
+            <End Role="Beba" EntitySet="Beba" />
+            <End Role="Aktivnost" EntitySet="Aktivnost" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Aktivnost_VrstaAkt" Association="Self.FK_Aktivnost_VrstaAkt">
+            <End Role="VrstaAkt" EntitySet="VrstaAkt" />
+            <End Role="Aktivnost" EntitySet="Aktivnost" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Pregled_Beba" Association="Self.FK_Pregled_Beba">
+            <End Role="Beba" EntitySet="Beba" />
+            <End Role="Pregled" EntitySet="Pregled" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Slika_Slika" Association="Self.FK_Slika_Slika">
+            <End Role="Beba" EntitySet="Beba" />
+            <End Role="Slika" EntitySet="Slika" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="BebachModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="Aktivnost">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Datum" Type="DateTime" Precision="3" />
+          <Property Name="Opis" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="TrajanjeOd" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="TrajanjeDo" Type="DateTime" Precision="3" />
+          <Property Name="BebaID" Type="Int32" Nullable="false" />
+          <Property Name="VrstaID" Type="Int32" Nullable="false" />
+          <Property Name="Cijena" Type="Decimal" Precision="10" Scale="2" />
+          <NavigationProperty Name="Beba" Relationship="Self.FK_Aktivnost_Beba" FromRole="Aktivnost" ToRole="Beba" />
+          <NavigationProperty Name="VrstaAkt" Relationship="Self.FK_Aktivnost_VrstaAkt" FromRole="Aktivnost" ToRole="VrstaAkt" />
+        </EntityType>
+        <EntityType Name="Beba">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Ime" Type="String" MaxLength="150" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Prezime" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Dat_rod" Type="DateTime" Precision="3" />
+          <Property Name="OIB" Type="String" MaxLength="11" FixedLength="true" Unicode="false" />
+          <Property Name="Adresa" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Majka" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+          <Property Name="Otac" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+          <Property Name="Dat_kreiranja" Type="DateTime" Precision="3" />
+          <Property Name="Dat_azu" Type="DateTime" Precision="3" />
+          <Property Name="Unio" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Aktivan" Type="Boolean" />
+          <Property Name="Racun" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Aktivnosts" Relationship="Self.FK_Aktivnost_Beba" FromRole="Beba" ToRole="Aktivnost" />
+          <NavigationProperty Name="Pregleds" Relationship="Self.FK_Pregled_Beba" FromRole="Beba" ToRole="Pregled" />
+          <NavigationProperty Name="Slikas" Relationship="Self.FK_Slika_Slika" FromRole="Beba" ToRole="Slika" />
+        </EntityType>
+        <EntityType Name="ELMAH_Error">
+          <Key>
+            <PropertyRef Name="ErrorId" />
+          </Key>
+          <Property Name="ErrorId" Type="Guid" Nullable="false" />
+          <Property Name="Application" Type="String" MaxLength="60" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Host" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Type" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Source" Type="String" MaxLength="60" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Message" Type="String" MaxLength="500" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="User" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="StatusCode" Type="Int32" Nullable="false" />
+          <Property Name="TimeUtc" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="Sequence" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="AllXml" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Info">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Sadrzaj" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Kategorija" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="Pregled">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Datum" Type="DateTime" Precision="3" />
+          <Property Name="Opis" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Visina" Type="Decimal" Precision="5" Scale="2" />
+          <Property Name="Tezina" Type="Decimal" Precision="5" Scale="2" />
+          <Property Name="Bolesti" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="OpsegGlave" Type="Decimal" Precision="5" Scale="2" />
+          <Property Name="BebaID" Type="Int32" />
+          <NavigationProperty Name="Beba" Relationship="Self.FK_Pregled_Beba" FromRole="Pregled" ToRole="Beba" />
+        </EntityType>
+        <EntityType Name="Slika">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Opis" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Putanja_Thumb" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Putanja_Slika" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Dat_kreiranja" Type="DateTime" Precision="3" />
+          <Property Name="BebaID" Type="Int32" />
+          <NavigationProperty Name="Beba" Relationship="Self.FK_Slika_Slika" FromRole="Slika" ToRole="Beba" />
+        </EntityType>
+        <EntityType Name="VrstaAkt">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Vrsta" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Aktivnosts" Relationship="Self.FK_Aktivnost_VrstaAkt" FromRole="VrstaAkt" ToRole="Aktivnost" />
+        </EntityType>
+        <Association Name="FK_Aktivnost_Beba">
+          <End Role="Beba" Type="Self.Beba" Multiplicity="1" />
+          <End Role="Aktivnost" Type="Self.Aktivnost" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Beba">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Aktivnost">
+              <PropertyRef Name="BebaID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Aktivnost_VrstaAkt">
+          <End Role="VrstaAkt" Type="Self.VrstaAkt" Multiplicity="1" />
+          <End Role="Aktivnost" Type="Self.Aktivnost" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="VrstaAkt">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Aktivnost">
+              <PropertyRef Name="VrstaID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Pregled_Beba">
+          <End Role="Beba" Type="Self.Beba" Multiplicity="0..1" />
+          <End Role="Pregled" Type="Self.Pregled" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Beba">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Pregled">
+              <PropertyRef Name="BebaID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Slika_Slika">
+          <End Role="Beba" Type="Self.Beba" Multiplicity="0..1" />
+          <End Role="Slika" Type="Self.Slika" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Beba">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Slika">
+              <PropertyRef Name="BebaID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="Entities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Aktivnosts" EntityType="Self.Aktivnost" />
+          <EntitySet Name="Bebas" EntityType="Self.Beba" />
+          <EntitySet Name="ELMAH_Error" EntityType="Self.ELMAH_Error" />
+          <EntitySet Name="Infoes" EntityType="Self.Info" />
+          <EntitySet Name="Pregleds" EntityType="Self.Pregled" />
+          <EntitySet Name="Slikas" EntityType="Self.Slika" />
+          <EntitySet Name="VrstaAkts" EntityType="Self.VrstaAkt" />
+          <AssociationSet Name="FK_Aktivnost_Beba" Association="Self.FK_Aktivnost_Beba">
+            <End Role="Beba" EntitySet="Bebas" />
+            <End Role="Aktivnost" EntitySet="Aktivnosts" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Aktivnost_VrstaAkt" Association="Self.FK_Aktivnost_VrstaAkt">
+            <End Role="VrstaAkt" EntitySet="VrstaAkts" />
+            <End Role="Aktivnost" EntitySet="Aktivnosts" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Pregled_Beba" Association="Self.FK_Pregled_Beba">
+            <End Role="Beba" EntitySet="Bebas" />
+            <End Role="Pregled" EntitySet="Pregleds" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Slika_Slika" Association="Self.FK_Slika_Slika">
+            <End Role="Beba" EntitySet="Bebas" />
+            <End Role="Slika" EntitySet="Slikas" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="BebachModelStoreContainer" CdmEntityContainer="Entities">
+          <EntitySetMapping Name="Aktivnosts">
+            <EntityTypeMapping TypeName="BebachModel.Aktivnost">
+              <MappingFragment StoreEntitySet="Aktivnost">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="Datum" ColumnName="Datum" />
+                <ScalarProperty Name="Opis" ColumnName="Opis" />
+                <ScalarProperty Name="TrajanjeOd" ColumnName="TrajanjeOd" />
+                <ScalarProperty Name="TrajanjeDo" ColumnName="TrajanjeDo" />
+                <ScalarProperty Name="BebaID" ColumnName="BebaID" />
+                <ScalarProperty Name="VrstaID" ColumnName="VrstaID" />
+                <ScalarProperty Name="Cijena" ColumnName="Cijena" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Bebas">
+            <EntityTypeMapping TypeName="BebachModel.Beba">
+              <MappingFragment StoreEntitySet="Beba">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="Ime" ColumnName="Ime" />
+                <ScalarProperty Name="Prezime" ColumnName="Prezime" />
+                <ScalarProperty Name="Dat_rod" ColumnName="Dat_rod" />
+                <ScalarProperty Name="OIB" ColumnName="OIB" />
+                <ScalarProperty Name="Adresa" ColumnName="Adresa" />
+                <ScalarProperty Name="Majka" ColumnName="Majka" />
+                <ScalarProperty Name="Otac" ColumnName="Otac" />
+                <ScalarProperty Name="Dat_kreiranja" ColumnName="Dat_kreiranja" />
+                <ScalarProperty Name="Dat_azu" ColumnName="Dat_azu" />
+                <ScalarProperty Name="Unio" ColumnName="Unio" />
+                <ScalarProperty Name="Aktivan" ColumnName="Aktivan" />
+                <ScalarProperty Name="Racun" ColumnName="Racun" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ELMAH_Error">
+            <EntityTypeMapping TypeName="BebachModel.ELMAH_Error">
+              <MappingFragment StoreEntitySet="ELMAH_Error">
+                <ScalarProperty Name="ErrorId" ColumnName="ErrorId" />
+                <ScalarProperty Name="Application" ColumnName="Application" />
+                <ScalarProperty Name="Host" ColumnName="Host" />
+                <ScalarProperty Name="Type" ColumnName="Type" />
+                <ScalarProperty Name="Source" ColumnName="Source" />
+                <ScalarProperty Name="Message" ColumnName="Message" />
+                <ScalarProperty Name="User" ColumnName="User" />
+                <ScalarProperty Name="StatusCode" ColumnName="StatusCode" />
+                <ScalarProperty Name="TimeUtc" ColumnName="TimeUtc" />
+                <ScalarProperty Name="Sequence" ColumnName="Sequence" />
+                <ScalarProperty Name="AllXml" ColumnName="AllXml" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Infoes">
+            <EntityTypeMapping TypeName="BebachModel.Info">
+              <MappingFragment StoreEntitySet="Info">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="Sadrzaj" ColumnName="Sadrzaj" />
+                <ScalarProperty Name="Kategorija" ColumnName="Kategorija" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Pregleds">
+            <EntityTypeMapping TypeName="BebachModel.Pregled">
+              <MappingFragment StoreEntitySet="Pregled">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="Datum" ColumnName="Datum" />
+                <ScalarProperty Name="Opis" ColumnName="Opis" />
+                <ScalarProperty Name="Visina" ColumnName="Visina" />
+                <ScalarProperty Name="Tezina" ColumnName="Tezina" />
+                <ScalarProperty Name="Bolesti" ColumnName="Bolesti" />
+                <ScalarProperty Name="OpsegGlave" ColumnName="OpsegGlave" />
+                <ScalarProperty Name="BebaID" ColumnName="BebaID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Slikas">
+            <EntityTypeMapping TypeName="BebachModel.Slika">
+              <MappingFragment StoreEntitySet="Slika">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="Opis" ColumnName="Opis" />
+                <ScalarProperty Name="Putanja_Thumb" ColumnName="Putanja_Thumb" />
+                <ScalarProperty Name="Putanja_Slika" ColumnName="Putanja_Slika" />
+                <ScalarProperty Name="Dat_kreiranja" ColumnName="Dat_kreiranja" />
+                <ScalarProperty Name="BebaID" ColumnName="BebaID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="VrstaAkts">
+            <EntityTypeMapping TypeName="BebachModel.VrstaAkt">
+              <MappingFragment StoreEntitySet="VrstaAkt">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="Vrsta" ColumnName="Vrsta" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

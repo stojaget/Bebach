@@ -1,0 +1,38 @@
+﻿@model DateTime
+
+@*@{
+
+    List<SelectListItem> sati = new List<SelectListItem>();
+    for (int i = 0; i <= 24; i++)
+    {
+        sati.Add(new SelectListItem() { Text = i.ToString(), Value = i.ToString(), Selected = (i == Model.Hour ? true : false) });
+    }
+
+    List<SelectListItem> minute = new List<SelectListItem>();
+    for (int i = 0; i <= 60; i++)
+    {
+        minute.Add(new SelectListItem() { Text = i.ToString(), Value = i.ToString(), Selected = (i == Model.Minute ? true : false) });
+    }
+    @Html.DropDownList("sati", sati)
+    @Html.DropDownList("minute", minute)
+}*@
+
+@Html.DropDownList("hours", Enumerable.Range(0, 24)
+                       .Select(i => new SelectListItem
+                       {
+                           Value = i.ToString(),
+                           Text = i.ToString(),
+                           //Selected = (Model.Hours > 12 ? Model.Hours - 12 : Model.Hours) == i
+                           Selected = Model.Hour == i
+                       }
+                  ))
+
+    @Html.DropDownList("minutes", Enumerable.Range(0, 60)
+                       .Select(j => new SelectListItem
+                       {
+                           Value = j.ToString(),
+                           Text = j.ToString(),
+                           Selected = Model.Minute == j
+                       }
+                  ))
+
