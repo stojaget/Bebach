@@ -199,6 +199,16 @@
     <Compile Include="Controllers\RolesAdminController.cs" />
     <Compile Include="Controllers\SlikaController.cs" />
     <Compile Include="Controllers\UsersAdminController.cs" />
+    <Compile Include="Reports\dsPregled.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>dsPregled.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="Reports\dsAktivnosti.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>dsAktivnosti.xsd</DependentUpon>
+    </Compile>
     <Compile Include="Extensions\BooleanConverter.cs" />
     <Compile Include="Extensions\BulkInsertHelper.cs" />
     <Compile Include="Extensions\CustomModelBinders.cs" />
@@ -345,6 +355,28 @@
     <Content Include="Content\bootstrap-theme.css.map" />
     <Content Include="Content\toastr.scss" />
     <Content Include="Content\toastr.less" />
+    <Content Include="Reports\dsAktivnosti.xsc">
+      <DependentUpon>dsAktivnosti.xsd</DependentUpon>
+    </Content>
+    <Content Include="Reports\dsPregled.xsc">
+      <DependentUpon>dsPregled.xsd</DependentUpon>
+    </Content>
+    <None Include="Reports\dsPregled.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>dsPregled.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <Content Include="Reports\dsPregled.xss">
+      <DependentUpon>dsPregled.xsd</DependentUpon>
+    </Content>
+    <None Include="Reports\dsAktivnosti.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>dsAktivnosti.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <Content Include="Reports\dsAktivnosti.xss">
+      <DependentUpon>dsAktivnosti.xsd</DependentUpon>
+    </Content>
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\bootstrap-datetimepicker.js" />
     <Content Include="Scripts\bootstrap-datetimepicker.min.js" />
@@ -518,6 +550,7 @@
       <DependentUpon>201511170927313_InitialCreate.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Reports\rptAktivnost.rdlc" />
+    <EmbeddedResource Include="Reports\rptPregled.rdlc" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\BebachModel\BebachModel.csproj">
