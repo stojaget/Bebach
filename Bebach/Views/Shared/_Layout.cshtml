@@ -27,7 +27,7 @@
                     <li>@Html.ActionLink("Beba", "Index", "Beba")</li>
                     <li>@Html.ActionLink("Zdravlje", "Index", "Zdravlje")</li>
                     <li>@Html.ActionLink("Aktivnosti", "Index", "Aktivnosti")</li>
-                    
+                    <li>@Html.ActionLink("Izvješća", "Index", "Report")</li>
                     @if (Request.IsAuthenticated && User.IsInRole("Admin"))
                     {
                         <li>@Html.ActionLink("RolesAdmin", "Index", "RolesAdmin")</li>

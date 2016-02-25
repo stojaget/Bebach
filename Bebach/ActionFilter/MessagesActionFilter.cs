@@ -27,21 +27,30 @@ namespace Bebach.ActionFilter
         public override void OnActionExecuted(ActionExecutedContext filterContext)
         {
             MessageControllerBase controller = filterContext.Controller as MessageControllerBase;
-            if (filterContext.Result.GetType() == typeof(ViewResult))
+            if (controller == null)
+            { }
+            else
             {
-                if (controller.Toastr != null && controller.Toastr.ToastMessages.Count() > 0)
+
+
+
+                if (filterContext.Result.GetType() == typeof(ViewResult))
                 {
-                    // We're going to a view so we store Toastr in the ViewData collection
-                    controller.ViewData["Toastr"] = controller.Toastr;
+
+                    if (controller.Toastr != null && controller.Toastr.ToastMessages.Count() > 0)
+                    {
+                        // We're going to a view so we store Toastr in the ViewData collection
+                        controller.ViewData["Toastr"] = controller.Toastr;
+                    }
                 }
-            }
-            else if (filterContext.Result.GetType() == typeof(RedirectToRouteResult))
-            {
-                if (controller.Toastr != null && controller.Toastr.ToastMessages.Count() > 0)
+                else if (filterContext.Result.GetType() == typeof(RedirectToRouteResult))
                 {
-                    // User is being redirected to another action method so we store Toastr in
-                    // the TempData collection
-                    controller.TempData["Toastr"] = controller.Toastr;
+                    if (controller.Toastr != null && controller.Toastr.ToastMessages.Count() > 0)
+                    {
+                        // User is being redirected to another action method so we store Toastr in
+                        // the TempData collection
+                        controller.TempData["Toastr"] = controller.Toastr;
+                    }
                 }
             }
 
