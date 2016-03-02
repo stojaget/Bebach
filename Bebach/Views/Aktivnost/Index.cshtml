@@ -26,9 +26,17 @@
         </button>
     </div> 
 }
+@using (Html.BeginForm("AutoKreiranje", "Aktivnost", new { bebaID = bebaID }))
+{
+    <div class=" btn-group-vertical" style="position: inherit">
+        <button type="submit" value="Popuni dan" class="btn btn-success" title="Automatsko popunjavanje dana">
+            <span class="glyphicon glyphicon-play-circle"></span>
+        </button>
+    </div>
+}
 
 <p>
-    @Html.ActionLink("Dodaj novu", "Create", new { bebaID = ViewBag.BebaID })
+    @Html.ActionLink("Dodaj novu aktivnost", "Create", new { bebaID = ViewBag.BebaID })
 </p>
 <table class="table">
     <tr>

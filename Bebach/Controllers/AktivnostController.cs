@@ -35,10 +35,10 @@ namespace Bebach.Controllers
                 var aktivnosts = db.Aktivnosts.Include(a => a.Beba).Include(a => a.VrstaAkt).Where(
                     i => i.BebaID == bebaID.Value).ToList();
                 // napraviti sortiranje po ID, Datum poljima na aktivnosts
-              
-               
-                  var searchRes =  aktivnosts.Where(p => p.Datum >= datOd && p.Datum <= datDo);
-                
+
+
+                var searchRes = aktivnosts.Where(p => p.Datum >= datOd && p.Datum <= datDo);
+
                 return View("Index", searchRes.ToList());
 
             }
@@ -50,6 +50,25 @@ namespace Bebach.Controllers
 
 
 
+        }
+
+        public ActionResult AutoKreiranje(int bebaID)
+        {
+            // kreiramo aktivnosti za jedan dan
+            DateTime datOd = DateTime.Now;
+            DateTime datDo = DateTime.Now.AddDays(1);
+            DateTime datBebe = db.Bebas.First(s => s.ID == bebaID).Dat_rod.GetValueOrDefault(DateTime.MinValue);
+            double mjeseci = 0;
+            if (datBebe != DateTime.MinValue)
+            {
+                mjeseci = datOd.Subtract(datBebe).Days / (365.25 / 12);
+            }
+            else
+            {
+                // ako nemamo datum rođenja onda uzmi 12 kao default
+                mjeseci = 12;
+            }
+            return new EmptyResult();
         }
 
         public ActionResult Index(int? bebaID, string sortOrder)

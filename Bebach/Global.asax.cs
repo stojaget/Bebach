@@ -8,6 +8,8 @@ using System.Web.Routing;
 using System.Data.Entity;
 using Bebach.Extensions;
 using System.Globalization;
+using System.Web.Security;
+using Bebach.Controllers;
 
 namespace Bebach
 {
@@ -37,5 +39,23 @@ namespace Bebach
             //System.Threading.Thread.CurrentThread.CurrentCulture = cInf;
             //System.Threading.Thread.CurrentThread.CurrentUICulture = cInf;
         }
+
+        //protected void Application_AuthenticateRequest(Object sender, EventArgs e)
+        //{
+        //    // Get the authentication cookie
+        //    string cookieName = FormsAuthentication.FormsCookieName;
+        //    HttpCookie authCookie = Context.Request.Cookies[cookieName];
+
+        //    // If the cookie can't be found, don't issue the ticket, redirect to the login page.
+        //    if (authCookie == null)
+        //    {
+        //        var routeData = new RouteData();
+        //        routeData.Values["controller"] = "Account";
+        //        routeData.Values["action"] = "Login";
+        //        IController controller = null;
+        //        controller = new AccountController();
+        //        ((IController)controller).Execute(new RequestContext(new HttpContextWrapper(HttpContext.Current), routeData));
+        //    }
+        //}
     }
 }

@@ -4,11 +4,12 @@
     ViewBag.Title = "Index";
 }
 
-<h2>Index</h2>
+<h2 class="alert-info">Pregled bebinog dnevnika</h2>
 
 <p>
     @Html.ActionLink("Unos nove", "Create")
 </p>
+<h4 class=" alert-info">PODACI O BEBI</h4>
 <table class="table">
     <tr>
         <th>Ime</th>
@@ -69,7 +70,7 @@
 </table>
 @if (Model.Aktivnosts != null)
 {
-
+    <h4 class=" alert-info">AKTIVNOSTI BEBE</h4>
     <table class="table">
         <tr>
 
@@ -112,6 +113,7 @@
 }
 @if (Model.Pregleds != null)
 {
+    <h4 class=" alert-info">PREGLEDI BEBE</h4>
     <table class="table">
         <tr>
 
@@ -151,6 +153,7 @@
 }
 @if (Model.Slikas != null)
 {
+    <h4 class=" alert-info">SLIKE BEBE</h4>
     <table class="table">
         <tr>
 
