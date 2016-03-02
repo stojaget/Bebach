@@ -59,6 +59,7 @@ namespace Bebach.Controllers
             DateTime datDo = DateTime.Now.AddDays(1);
             DateTime datBebe = db.Bebas.First(s => s.ID == bebaID).Dat_rod.GetValueOrDefault(DateTime.MinValue);
             double mjeseci = 0;
+            // po mjesecima radimo algoritam
             if (datBebe != DateTime.MinValue)
             {
                 mjeseci = datOd.Subtract(datBebe).Days / (365.25 / 12);
