@@ -26,8 +26,7 @@
             <Mappings>
               <Mapping SourceColumn="Datum" DataSetColumn="Datum" />
               <Mapping SourceColumn="Opis" DataSetColumn="Opis" />
-              <Mapping SourceColumn="TrajanjeOd" DataSetColumn="TrajanjeOd" />
-              <Mapping SourceColumn="TrajanjeDo" DataSetColumn="TrajanjeDo" />
+              <Mapping SourceColumn="Trajanje" DataSetColumn="Trajanje" />
               <Mapping SourceColumn="Cijena" DataSetColumn="Cijena" />
               <Mapping SourceColumn="Vrsta" DataSetColumn="Vrsta" />
               <Mapping SourceColumn="Beba" DataSetColumn="Beba" />
@@ -53,8 +52,7 @@
                   </xs:restriction>
                 </xs:simpleType>
               </xs:element>
-              <xs:element name="TrajanjeOd" msprop:Generator_ColumnVarNameInTable="columnTrajanjeOd" msprop:Generator_ColumnPropNameInRow="TrajanjeOd" msprop:Generator_ColumnPropNameInTable="TrajanjeOdColumn" msprop:Generator_UserColumnName="TrajanjeOd" type="xs:dateTime" />
-              <xs:element name="TrajanjeDo" msprop:Generator_ColumnVarNameInTable="columnTrajanjeDo" msprop:Generator_ColumnPropNameInRow="TrajanjeDo" msprop:Generator_ColumnPropNameInTable="TrajanjeDoColumn" msprop:Generator_UserColumnName="TrajanjeDo" type="xs:dateTime" minOccurs="0" />
+              <xs:element name="Trajanje" msprop:Generator_ColumnVarNameInTable="columnTrajanje" msprop:Generator_ColumnPropNameInRow="Trajanje" msprop:Generator_ColumnPropNameInTable="TrajanjeColumn" msprop:Generator_UserColumnName="Trajanje" type="xs:int" />
               <xs:element name="Cijena" msprop:Generator_ColumnVarNameInTable="columnCijena" msprop:Generator_ColumnPropNameInRow="Cijena" msprop:Generator_ColumnPropNameInTable="CijenaColumn" msprop:Generator_UserColumnName="Cijena" type="xs:decimal" minOccurs="0" />
               <xs:element name="Vrsta" msprop:Generator_ColumnVarNameInTable="columnVrsta" msprop:Generator_ColumnPropNameInRow="Vrsta" msprop:Generator_ColumnPropNameInTable="VrstaColumn" msprop:Generator_UserColumnName="Vrsta" minOccurs="0">
                 <xs:simpleType>

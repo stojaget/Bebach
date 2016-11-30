@@ -77,9 +77,8 @@
             <th>ID</th>
             <th>Datum</th>
             <th>Opis</th>
-            <th>Od</th>
-            <th>Do</th>
-            <th></th>
+            <th>Trajanje</th>
+             <th></th>
         </tr>
 
         @foreach (var item in Model.Aktivnosts)
@@ -98,11 +97,9 @@
                 </td>
 
                 <td>
-                    @item.TrajanjeOd
+                    @item.Trajanje
                 </td>
-                <td>
-                    @item.TrajanjeDo
-                </td>
+               
                 <td>
                     @Html.ActionLink("Aktivnost", "Index","Aktivnost" , new { bebaID = item.BebaID }, null)
                 </td>

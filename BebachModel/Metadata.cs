@@ -54,14 +54,15 @@ namespace BebachModel
         [Display(Name = "Datum")]
         public Nullable<System.DateTime> Datum { get; set; }
         public string Opis { get; set; }
-        [DataType(DataType.Time)]
+        public int Trajanje { get; set; }
+        //[DataType(DataType.Time)]
         //[DisplayFormat(ApplyFormatInEditMode = false, DataFormatString = "{0:HH:mm}")]
-         [UIHint("CustomTime")]
-        public System.DateTime TrajanjeOd { get; set; }
-        [DataType(DataType.Time)]
-        [UIHint("CustomTime")]
+         //[UIHint("CustomTime")]
+       // public System.DateTime TrajanjeOd { get; set; }
+        //[DataType(DataType.Time)]
+       // [UIHint("CustomTime")]
         //[DisplayFormat(ApplyFormatInEditMode = false, DataFormatString = "{0:HH:mm}")]
-        public System.DateTime TrajanjeDo { get; set; }
+        //public System.DateTime TrajanjeDo { get; set; }
         public int BebaID { get; set; }
         public int VrstaID { get; set; }
 

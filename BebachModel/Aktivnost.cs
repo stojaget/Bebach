@@ -17,11 +17,10 @@ namespace BebachModel
         public int ID { get; set; }
         public Nullable<System.DateTime> Datum { get; set; }
         public string Opis { get; set; }
-        public System.DateTime TrajanjeOd { get; set; }
-        public System.DateTime TrajanjeDo { get; set; }
         public int BebaID { get; set; }
         public int VrstaID { get; set; }
         public Nullable<decimal> Cijena { get; set; }
+        public Nullable<int> Trajanje { get; set; }
     
         public virtual Beba Beba { get; set; }
         public virtual VrstaAkt VrstaAkt { get; set; }

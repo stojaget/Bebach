@@ -39,11 +39,17 @@
                 @Html.ValidationMessageFor(model => model.Opis, "", new { @class = "text-danger" })
             </div>
         </div>
-
         <div class="form-group">
+            @Html.LabelFor(model => model.Trajanje, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.Trajanje, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.Trajanje, "", new { @class = "text-danger" })
+            </div>
+        </div>
+        @*<div class="form-group">
             @Html.LabelFor(model => model.TrajanjeOd, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @*@Html.EditorFor(model => model.TrajanjeOd, new { htmlAttributes = new { @class = "form-control" } })*@
+                @Html.EditorFor(model => model.TrajanjeOd, new { htmlAttributes = new { @class = "form-control" } })
                 @Html.EditorFor(model => model.TrajanjeOd, new
            {
                htmlAttributes = new
@@ -70,7 +76,7 @@
            })
                 @Html.ValidationMessageFor(model => model.TrajanjeDo, "", new { @class = "text-danger" })
             </div>
-        </div>
+        </div>*@
 
         <div class="form-group">
             @Html.LabelFor(model => model.BebaID, "BebaID", htmlAttributes: new { @class = "control-label col-md-2" })

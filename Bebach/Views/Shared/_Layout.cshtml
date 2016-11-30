@@ -25,8 +25,8 @@
                 <ul class="nav navbar-nav">
                     <li>@Html.ActionLink("Home", "Index", "Home")</li>
                     <li>@Html.ActionLink("Beba", "Index", "Beba")</li>
-                    <li>@Html.ActionLink("Zdravlje", "Index", "Pregled")</li>
-                    <li>@Html.ActionLink("Aktivnosti", "Index", "Aktivnost")</li>
+                    @*<li>@Html.ActionLink("Zdravlje", "Index", "Pregled")</li>
+                    <li>@Html.ActionLink("Aktivnosti", "Index", "Aktivnost")</li>*@
                     <li>@Html.ActionLink("Izvješća", "Index", "Report")</li>
                     @if (Request.IsAuthenticated && User.IsInRole("Admin"))
                     {

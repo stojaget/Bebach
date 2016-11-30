@@ -213,10 +213,7 @@
               <Width>4.35208cm</Width>
             </TablixColumn>
             <TablixColumn>
-              <Width>9.96125cm</Width>
-            </TablixColumn>
-            <TablixColumn>
-              <Width>2.5cm</Width>
+              <Width>10.38459cm</Width>
             </TablixColumn>
             <TablixColumn>
               <Width>2.5cm</Width>
@@ -334,7 +331,7 @@
                         <Paragraph>
                           <TextRuns>
                             <TextRun>
-                              <Value>Trajanje Od</Value>
+                              <Value>Trajanje </Value>
                               <Style>
                                 <FontWeight>Bold</FontWeight>
                               </Style>
@@ -344,38 +341,6 @@
                         </Paragraph>
                       </Paragraphs>
                       <rd:DefaultName>Textbox9</rd:DefaultName>
-                      <Style>
-                        <Border>
-                          <Color>LightGrey</Color>
-                          <Style>Solid</Style>
-                        </Border>
-                        <PaddingLeft>2pt</PaddingLeft>
-                        <PaddingRight>2pt</PaddingRight>
-                        <PaddingTop>2pt</PaddingTop>
-                        <PaddingBottom>2pt</PaddingBottom>
-                      </Style>
-                    </Textbox>
-                  </CellContents>
-                </TablixCell>
-                <TablixCell>
-                  <CellContents>
-                    <Textbox Name="Textbox11">
-                      <CanGrow>true</CanGrow>
-                      <KeepTogether>true</KeepTogether>
-                      <Paragraphs>
-                        <Paragraph>
-                          <TextRuns>
-                            <TextRun>
-                              <Value>Trajanje Do</Value>
-                              <Style>
-                                <FontWeight>Bold</FontWeight>
-                              </Style>
-                            </TextRun>
-                          </TextRuns>
-                          <Style />
-                        </Paragraph>
-                      </Paragraphs>
-                      <rd:DefaultName>Textbox11</rd:DefaultName>
                       <Style>
                         <Border>
                           <Color>LightGrey</Color>
@@ -520,16 +485,15 @@
                 </TablixCell>
                 <TablixCell>
                   <CellContents>
-                    <Textbox Name="TrajanjeOd">
+                    <Textbox Name="Trajanje">
                       <CanGrow>true</CanGrow>
                       <KeepTogether>true</KeepTogether>
                       <Paragraphs>
                         <Paragraph>
                           <TextRuns>
                             <TextRun>
-                              <Value>=Fields!TrajanjeOd.Value</Value>
+                              <Value>=Fields!Trajanje.Value</Value>
                               <Style>
-                                <Format>dd.MM.yyyy</Format>
                                 <Language>hr-HR</Language>
                               </Style>
                             </TextRun>
@@ -537,7 +501,7 @@
                           <Style />
                         </Paragraph>
                       </Paragraphs>
-                      <rd:DefaultName>TrajanjeOd</rd:DefaultName>
+                      <rd:DefaultName>Trajanje</rd:DefaultName>
                       <Style>
                         <Border>
                           <Color>LightGrey</Color>
@@ -549,38 +513,7 @@
                         <PaddingBottom>2pt</PaddingBottom>
                       </Style>
                     </Textbox>
-                  </CellContents>
-                </TablixCell>
-                <TablixCell>
-                  <CellContents>
-                    <Textbox Name="TrajanjeDo">
-                      <CanGrow>true</CanGrow>
-                      <KeepTogether>true</KeepTogether>
-                      <Paragraphs>
-                        <Paragraph>
-                          <TextRuns>
-                            <TextRun>
-                              <Value>=Fields!TrajanjeDo.Value</Value>
-                              <Style>
-                                <Format>dd.MM.yyyy</Format>
-                              </Style>
-                            </TextRun>
-                          </TextRuns>
-                          <Style />
-                        </Paragraph>
-                      </Paragraphs>
-                      <rd:DefaultName>TrajanjeDo</rd:DefaultName>
-                      <Style>
-                        <Border>
-                          <Color>LightGrey</Color>
-                          <Style>Solid</Style>
-                        </Border>
-                        <PaddingLeft>2pt</PaddingLeft>
-                        <PaddingRight>2pt</PaddingRight>
-                        <PaddingTop>2pt</PaddingTop>
-                        <PaddingBottom>2pt</PaddingBottom>
-                      </Style>
-                    </Textbox>
+                    <rd:Selected>true</rd:Selected>
                   </CellContents>
                 </TablixCell>
                 <TablixCell>
@@ -624,7 +557,6 @@
             <TablixMember />
             <TablixMember />
             <TablixMember />
-            <TablixMember />
           </TablixMembers>
         </TablixColumnHierarchy>
         <TablixRowHierarchy>
@@ -641,7 +573,7 @@
         <Top>2.90724cm</Top>
         <Left>0.28787cm</Left>
         <Height>1.2cm</Height>
-        <Width>24.31333cm</Width>
+        <Width>22.23667cm</Width>
         <ZIndex>6</ZIndex>
         <Style>
           <Border>
@@ -789,13 +721,9 @@
           <DataField>Opis</DataField>
           <rd:TypeName>System.String</rd:TypeName>
         </Field>
-        <Field Name="TrajanjeOd">
-          <DataField>TrajanjeOd</DataField>
-          <rd:TypeName>System.DateTime</rd:TypeName>
-        </Field>
-        <Field Name="TrajanjeDo">
-          <DataField>TrajanjeDo</DataField>
-          <rd:TypeName>System.DateTime</rd:TypeName>
+        <Field Name="Trajanje">
+          <DataField>Trajanje</DataField>
+          <rd:TypeName>System.Int32</rd:TypeName>
         </Field>
         <Field Name="Cijena">
           <DataField>Cijena</DataField>
@@ -812,7 +740,7 @@
       </Fields>
       <rd:DataSetInfo>
         <rd:DataSetName>dsAktivnosti</rd:DataSetName>
-        <rd:SchemaPath>C:\Users\dare\Documents\Visual Studio 2015\Projects\Bebach\Bebach\dsAktivnosti.xsd</rd:SchemaPath>
+        <rd:SchemaPath>C:\Users\dare\Documents\Visual Studio 2015\Projects\Bebach\Bebach\Reports\dsAktivnosti.xsd</rd:SchemaPath>
         <rd:TableName>spAktivnostiPoDatumu</rd:TableName>
         <rd:TableAdapterFillMethod>Fill</rd:TableAdapterFillMethod>
         <rd:TableAdapterGetDataMethod>GetData</rd:TableAdapterGetDataMethod>

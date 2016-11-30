@@ -25,8 +25,9 @@ namespace Bebach.Extensions
                 initAkt.Datum = DateTime.Now;
                 initAkt.Opis = "";
                 initAkt.VrstaID = 1;
-                initAkt.TrajanjeOd = new DateTime(DateTime.Now.Year, DateTime.Now.Month, DateTime.Now.Day, DateTime.Now.Hour + 2, DateTime.Now.Minute, DateTime.Now.Second);
-                initAkt.TrajanjeDo = new DateTime(DateTime.Now.Year, DateTime.Now.Month, DateTime.Now.Day, DateTime.Now.Hour + 2, DateTime.Now.Minute + 10, DateTime.Now.Second);
+                initAkt.Trajanje = 0;
+                //initAkt.TrajanjeOd = new DateTime(DateTime.Now.Year, DateTime.Now.Month, DateTime.Now.Day, DateTime.Now.Hour + 2, DateTime.Now.Minute, DateTime.Now.Second);
+                //initAkt.TrajanjeDo = new DateTime(DateTime.Now.Year, DateTime.Now.Month, DateTime.Now.Day, DateTime.Now.Hour + 2, DateTime.Now.Minute + 10, DateTime.Now.Second);
             }
             catch (DataException)
             {

@@ -1,10 +1,8 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Data;
 using System.Data.Entity;
 using System.Linq;
 using System.Net;
-using System.Web;
 using System.Web.Mvc;
 using BebachModel;
 using Bebach.Extensions.Toastr;
@@ -54,22 +52,26 @@ namespace Bebach.Controllers
 
         public ActionResult AutoKreiranje(int bebaID)
         {
-            // kreiramo aktivnosti za jedan dan
-            DateTime datOd = DateTime.Now;
-            DateTime datDo = DateTime.Now.AddDays(1);
-            DateTime datBebe = db.Bebas.First(s => s.ID == bebaID).Dat_rod.GetValueOrDefault(DateTime.MinValue);
-            double mjeseci = 0;
-            // po mjesecima radimo algoritam
-            if (datBebe != DateTime.MinValue)
+            Aktivnost akt = new Aktivnost();
+            akt.BebaID = bebaID;
+            akt.Datum = DateTime.Now;
+            // pozvati servis koji će ovisno o mjesecima napraviti unos aktivnosti za jedan dan
+            int uspjeh = BLL.AktivnostManager.AutoKreiraj(akt);
+            if (uspjeh == 1)
             {
-                mjeseci = datOd.Subtract(datBebe).Days / (365.25 / 12);
+                // uspješno je kreirano
+                var aktivnosts = db.Aktivnosts.Include(a => a.Beba).Include(a => a.VrstaAkt).Where(
+                  i => i.BebaID == bebaID).ToList();
+                return View("Index", aktivnosts.ToList());
             }
             else
             {
-                // ako nemamo datum rođenja onda uzmi 12 kao default
-                mjeseci = 12;
+                // dogodila se greška kod kreiranja 
+                return new EmptyResult();
             }
-            return new EmptyResult();
+           
+
+
         }
 
         public ActionResult Index(int? bebaID, string sortOrder)
@@ -205,8 +207,8 @@ namespace Bebach.Controllers
             initAkt.Cijena = 0.00m;
             initAkt.Datum = DateTime.Now;
             initAkt.Opis = string.Empty;
-            initAkt.TrajanjeOd = DateTime.Now;
-            initAkt.TrajanjeDo = DateTime.Now.AddMinutes(10.00);
+            initAkt.Trajanje = 0;
+            
 
             return View(initAkt);
         }
@@ -216,7 +218,7 @@ namespace Bebach.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "Datum,Opis,TrajanjeOd,TrajanjeDo,BebaID,VrstaID,Cijena")] Aktivnost aktivnost)
+        public ActionResult Create([Bind(Include = "Datum,Opis,Trajanje,BebaID,VrstaID,Cijena")] Aktivnost aktivnost)
         {
 
             if (ModelState.IsValid)
@@ -271,7 +273,7 @@ namespace Bebach.Controllers
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
             var aktUpdate = db.Aktivnosts.Find(id);
-            if (TryUpdateModel(aktUpdate, "", new string[] { "Datum", "Opis", "TrajanjeOd", "TrajanjeDo", "BebaID", "VrstaID", "Cijena" }))
+            if (TryUpdateModel(aktUpdate, "", new string[] { "Datum", "Opis", "Trajanje", "BebaID", "VrstaID", "Cijena" }))
             {
                 try
                 {

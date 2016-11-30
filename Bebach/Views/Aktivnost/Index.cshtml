@@ -50,11 +50,14 @@
             @Html.DisplayNameFor(model => model.Opis)
         </th>
         <th>
+            @Html.DisplayNameFor(model => model.Trajanje)
+        </th>
+        @*<th>
             @Html.DisplayNameFor(model => model.TrajanjeOd)
         </th>
         <th>
             @Html.DisplayNameFor(model => model.TrajanjeDo)
-        </th>
+        </th>*@
         <th>
             @Html.ActionLink("Cijena", "Index", new { bebaID = ViewBag.bebaID, sortOrder = ViewBag.CijenaSortParm, currentFilter = ViewBag.CurrentFilter })
         </th>
@@ -79,11 +82,14 @@
             @Html.DisplayFor(modelItem => item.Opis)
         </td>
         <td>
+            @Html.DisplayFor(modelItem => item.Trajanje)
+        </td>
+        @*<td>
             @Html.DisplayFor(modelItem => item.TrajanjeOd)
         </td>
         <td>
             @Html.DisplayFor(modelItem => item.TrajanjeDo)
-        </td>
+        </td>*@
         <td>
             @Html.DisplayFor(modelItem => item.Cijena)
         </td>

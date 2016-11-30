@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="BebachModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+    <Schema Namespace="BebachModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="Aktivnost">
           <Key>
             <PropertyRef Name="ID" />
@@ -12,11 +12,10 @@
           <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="Datum" Type="datetime" />
           <Property Name="Opis" Type="nvarchar(max)" />
-          <Property Name="TrajanjeOd" Type="datetime" Nullable="false" />
-          <Property Name="TrajanjeDo" Type="datetime" />
           <Property Name="BebaID" Type="int" Nullable="false" />
           <Property Name="VrstaID" Type="int" Nullable="false" />
           <Property Name="Cijena" Type="decimal" Precision="10" Scale="2" />
+          <Property Name="Trajanje" Type="int" />
         </EntityType>
         <EntityType Name="Beba">
           <Key>
@@ -164,8 +163,7 @@
             <End Role="Slika" EntitySet="Slika" />
           </AssociationSet>
         </EntityContainer>
-      </Schema>
-    </edmx:StorageModels>
+      </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="BebachModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
@@ -176,13 +174,12 @@
           <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="Datum" Type="DateTime" Precision="3" />
           <Property Name="Opis" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Name="TrajanjeOd" Type="DateTime" Nullable="false" Precision="3" />
-          <Property Name="TrajanjeDo" Type="DateTime" Precision="3" />
           <Property Name="BebaID" Type="Int32" Nullable="false" />
           <Property Name="VrstaID" Type="Int32" Nullable="false" />
           <Property Name="Cijena" Type="Decimal" Precision="10" Scale="2" />
           <NavigationProperty Name="Beba" Relationship="Self.FK_Aktivnost_Beba" FromRole="Aktivnost" ToRole="Beba" />
           <NavigationProperty Name="VrstaAkt" Relationship="Self.FK_Aktivnost_VrstaAkt" FromRole="Aktivnost" ToRole="VrstaAkt" />
+          <Property Name="Trajanje" Type="Int32" />
         </EntityType>
         <EntityType Name="Beba">
           <Key>
@@ -345,11 +342,10 @@
           <EntitySetMapping Name="Aktivnosts">
             <EntityTypeMapping TypeName="BebachModel.Aktivnost">
               <MappingFragment StoreEntitySet="Aktivnost">
+                <ScalarProperty Name="Trajanje" ColumnName="Trajanje" />
                 <ScalarProperty Name="ID" ColumnName="ID" />
                 <ScalarProperty Name="Datum" ColumnName="Datum" />
                 <ScalarProperty Name="Opis" ColumnName="Opis" />
-                <ScalarProperty Name="TrajanjeOd" ColumnName="TrajanjeOd" />
-                <ScalarProperty Name="TrajanjeDo" ColumnName="TrajanjeDo" />
                 <ScalarProperty Name="BebaID" ColumnName="BebaID" />
                 <ScalarProperty Name="VrstaID" ColumnName="VrstaID" />
                 <ScalarProperty Name="Cijena" ColumnName="Cijena" />

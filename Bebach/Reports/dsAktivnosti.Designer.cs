@@ -283,9 +283,7 @@ namespace Bebach.Reports {
             
             private global::System.Data.DataColumn columnOpis;
             
-            private global::System.Data.DataColumn columnTrajanjeOd;
-            
-            private global::System.Data.DataColumn columnTrajanjeDo;
+            private global::System.Data.DataColumn columnTrajanje;
             
             private global::System.Data.DataColumn columnCijena;
             
@@ -344,17 +342,9 @@ namespace Bebach.Reports {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public global::System.Data.DataColumn TrajanjeOdColumn {
+            public global::System.Data.DataColumn TrajanjeColumn {
                 get {
-                    return this.columnTrajanjeOd;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public global::System.Data.DataColumn TrajanjeDoColumn {
-                get {
-                    return this.columnTrajanjeDo;
+                    return this.columnTrajanje;
                 }
             }
             
@@ -419,13 +409,12 @@ namespace Bebach.Reports {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public spAktivnostiPoDatumuRow AddspAktivnostiPoDatumuRow(System.DateTime Datum, string Opis, System.DateTime TrajanjeOd, System.DateTime TrajanjeDo, decimal Cijena, string Vrsta, string Beba) {
+            public spAktivnostiPoDatumuRow AddspAktivnostiPoDatumuRow(System.DateTime Datum, string Opis, int Trajanje, decimal Cijena, string Vrsta, string Beba) {
                 spAktivnostiPoDatumuRow rowspAktivnostiPoDatumuRow = ((spAktivnostiPoDatumuRow)(this.NewRow()));
                 object[] columnValuesArray = new object[] {
                         Datum,
                         Opis,
-                        TrajanjeOd,
-                        TrajanjeDo,
+                        Trajanje,
                         Cijena,
                         Vrsta,
                         Beba};
@@ -453,8 +442,7 @@ namespace Bebach.Reports {
             internal void InitVars() {
                 this.columnDatum = base.Columns["Datum"];
                 this.columnOpis = base.Columns["Opis"];
-                this.columnTrajanjeOd = base.Columns["TrajanjeOd"];
-                this.columnTrajanjeDo = base.Columns["TrajanjeDo"];
+                this.columnTrajanje = base.Columns["Trajanje"];
                 this.columnCijena = base.Columns["Cijena"];
                 this.columnVrsta = base.Columns["Vrsta"];
                 this.columnBeba = base.Columns["Beba"];
@@ -467,10 +455,8 @@ namespace Bebach.Reports {
                 base.Columns.Add(this.columnDatum);
                 this.columnOpis = new global::System.Data.DataColumn("Opis", typeof(string), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnOpis);
-                this.columnTrajanjeOd = new global::System.Data.DataColumn("TrajanjeOd", typeof(global::System.DateTime), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnTrajanjeOd);
-                this.columnTrajanjeDo = new global::System.Data.DataColumn("TrajanjeDo", typeof(global::System.DateTime), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnTrajanjeDo);
+                this.columnTrajanje = new global::System.Data.DataColumn("Trajanje", typeof(int), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnTrajanje);
                 this.columnCijena = new global::System.Data.DataColumn("Cijena", typeof(decimal), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnCijena);
                 this.columnVrsta = new global::System.Data.DataColumn("Vrsta", typeof(string), null, global::System.Data.MappingType.Element);
@@ -478,7 +464,7 @@ namespace Bebach.Reports {
                 this.columnBeba = new global::System.Data.DataColumn("Beba", typeof(string), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnBeba);
                 this.columnOpis.MaxLength = 2147483647;
-                this.columnTrajanjeOd.AllowDBNull = false;
+                this.columnTrajanje.AllowDBNull = false;
                 this.columnVrsta.MaxLength = 2147483647;
                 this.columnBeba.ReadOnly = true;
                 this.columnBeba.MaxLength = 2147483647;
@@ -656,28 +642,12 @@ namespace Bebach.Reports {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public System.DateTime TrajanjeOd {
+            public int Trajanje {
                 get {
-                    return ((global::System.DateTime)(this[this.tablespAktivnostiPoDatumu.TrajanjeOdColumn]));
+                    return ((int)(this[this.tablespAktivnostiPoDatumu.TrajanjeColumn]));
                 }
                 set {
-                    this[this.tablespAktivnostiPoDatumu.TrajanjeOdColumn] = value;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public System.DateTime TrajanjeDo {
-                get {
-                    try {
-                        return ((global::System.DateTime)(this[this.tablespAktivnostiPoDatumu.TrajanjeDoColumn]));
-                    }
-                    catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("The value for column \'TrajanjeDo\' in table \'spAktivnostiPoDatumu\' is DBNull.", e);
-                    }
-                }
-                set {
-                    this[this.tablespAktivnostiPoDatumu.TrajanjeDoColumn] = value;
+                    this[this.tablespAktivnostiPoDatumu.TrajanjeColumn] = value;
                 }
             }
             
@@ -751,18 +721,6 @@ namespace Bebach.Reports {
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public void SetOpisNull() {
                 this[this.tablespAktivnostiPoDatumu.OpisColumn] = global::System.Convert.DBNull;
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public bool IsTrajanjeDoNull() {
-                return this.IsNull(this.tablespAktivnostiPoDatumu.TrajanjeDoColumn);
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public void SetTrajanjeDoNull() {
-                this[this.tablespAktivnostiPoDatumu.TrajanjeDoColumn] = global::System.Convert.DBNull;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -963,8 +921,7 @@ namespace Bebach.Reports.dsAktivnostiTableAdapters {
             tableMapping.DataSetTable = "spAktivnostiPoDatumu";
             tableMapping.ColumnMappings.Add("Datum", "Datum");
             tableMapping.ColumnMappings.Add("Opis", "Opis");
-            tableMapping.ColumnMappings.Add("TrajanjeOd", "TrajanjeOd");
-            tableMapping.ColumnMappings.Add("TrajanjeDo", "TrajanjeDo");
+            tableMapping.ColumnMappings.Add("Trajanje", "Trajanje");
             tableMapping.ColumnMappings.Add("Cijena", "Cijena");
             tableMapping.ColumnMappings.Add("Vrsta", "Vrsta");
             tableMapping.ColumnMappings.Add("Beba", "Beba");
