@@ -1,0 +1,197 @@
+﻿@model BebachModel.Aktivnost
+
+@{
+    ViewBag.Title = "Edit";
+}
+
+<h2>Edit</h2>
+
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+    <div class="form-horizontal">
+        <h4>Aktivnost</h4>
+        <hr />
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        @Html.HiddenFor(model => model.ID)
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Datum, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.TextBoxFor(model => model.Datum, new
+           {
+               htmlAttributes = new
+               {
+                   @Value = Model.Datum.ToString(),
+                   @class = "form-control"
+               },
+           })
+                @Html.ValidationMessageFor(model => model.Datum, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Opis, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.Opis, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.Opis, "", new { @class = "text-danger" })
+            </div>
+        </div>
+        <div class="form-group">
+            @Html.LabelFor(model => model.Trajanje, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.Trajanje, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.Trajanje, "", new { @class = "text-danger" })
+            </div>
+        </div>
+        @*<div class="form-group">
+            @Html.LabelFor(model => model.TrajanjeOd, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.TrajanjeOd, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.EditorFor(model => model.TrajanjeOd, new
+           {
+               htmlAttributes = new
+               {
+                   @Value = Model.TrajanjeOd,
+                   @class = "form-control"
+               }
+           })
+                @Html.ValidationMessageFor(model => model.TrajanjeOd, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.TrajanjeDo, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+
+                @Html.EditorFor(model => model.TrajanjeDo, new
+           {
+               htmlAttributes = new
+               {
+                   @Value = Model.TrajanjeDo,
+                   @class = "form-control"
+               }
+           })
+                @Html.ValidationMessageFor(model => model.TrajanjeDo, "", new { @class = "text-danger" })
+            </div>
+        </div>*@
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.BebaID, "BebaID", htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.DropDownList("BebaID", null, htmlAttributes: new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.BebaID, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.VrstaID, "VrstaID", htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.DropDownList("VrstaID", null, htmlAttributes: new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.VrstaID, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Cijena, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.Cijena, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.Cijena, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Save" class="btn btn-default" />
+            </div>
+        </div>
+    </div>
+}
+
+<div>
+    @Html.ActionLink("Back to List", "Index", new { bebaID = Model.BebaID })
+</div>
+@section scripts {
+    <script type="text/javascript">
+        $(function () {
+           
+            var odd = moment.utc('@Model.TrajanjeOd.ToUniversalTime()');
+            //odd = moment.utc(odd);
+            var doo = moment.utc('@Model.TrajanjeDo.ToUniversalTime()');
+           // doo = moment.utc(doo);
+            $('#Datum').datetimepicker({
+                locale: 'hr',
+                defaultDate: '@Model.Datum',
+                format: 'L',
+                showClose: true,
+                showClear: true,
+                toolbarPlacement: 'top'
+            });
+
+            //$('#TrajanjeOd').datetimepicker({
+            //    locale: 'hr',
+            //    defaultDate: odd,
+            //    format: 'LT',
+
+            //    showClose: true,
+            //    showClear: true,
+            //    toolbarPlacement: 'top',
+            //    stepping: 15
+            //});
+
+            //$('#TrajanjeDo').datetimepicker({
+            //    locale: 'hr',
+            //    defaultDate: doo,
+            //    format: 'LT',
+            //    showClose: true,
+            //    showClear: true,
+            //    toolbarPlacement: 'top',
+            //    stepping: 15
+            //});
+
+            //$("form").submit(function () {
+            //    var input = $('#TrajanjeOd').val();
+            //    var input = convertToUtc(input);
+            //    var input2 = $('#TrajanjeDo').val();
+            //    var input2 = convertToUtc(input2);
+            //});
+            function convertToUtc(str) {
+                var date = new Date(str);
+                var year = date.getUTCFullYear();
+                var month = date.getUTCMonth() + 1;
+                var dd = date.getUTCDate();
+                var hh = date.getUTCHours();
+                var mi = date.getUTCMinutes();
+                var sec = date.getUTCSeconds();
+
+                // 2010-11-12T13:14:15Z
+
+                theDate = year + "-" + (month[1] ? month : "0" + month[0]) + "-" +
+                          (dd[1] ? dd : "0" + dd[0]);
+                theTime = (hh[1] ? hh : "0" + hh[0]) + ":" + (mi[1] ? mi : "0" + mi[0]);
+                return [theDate, theTime].join("T");
+            }
+            function compareDate(str1) {
+                // str1 format should be dd/mm/yyyy. Separator can be anything e.g. / or -. It wont effect
+                //var dt1 = parseInt(str1.substring(0, 2));
+                //var mon1 = parseInt(str1.substring(3, 5));
+                //var yr1 = parseInt(str1.substring(6, 10));
+                //var hh1 = parseInt(str1.substring(12, 14));
+                //var mm1 = parseInt(str1.substring(15, 17));
+                //var ss1 = parseInt(str1.substring(18, 20));
+                //var date1 = new Date(yr1, mon1 - 1, dt1, hh1, mm1, ss1);
+                var sati = parseInt(str1.substring(0, 2));
+                var minute = parseInt(str1.substring(3, 5));
+                var ss1 = '00';
+                var theTime = (sati + ":" + minute + ":" + ss1);
+                var datum = @DateTime.Now.ToString("yyyy-MM-dd");
+                var date1 = datum + " " + theTime;
+                return date1;
+            }
+        });
+    </script>
+    @Scripts.Render("~/bundles/jqueryval")
+}
+

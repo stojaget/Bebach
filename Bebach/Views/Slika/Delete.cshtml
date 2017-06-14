@@ -1,0 +1,56 @@
+﻿@model BebachModel.Slika
+
+@{
+    ViewBag.Title = "Delete";
+}
+
+<h2>Delete</h2>
+
+<h3>Are you sure you want to delete this?</h3>
+<div>
+    <h4>Slika</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Opis)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Opis)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Putanja_Thumb)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Putanja_Thumb)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Putanja_Slika)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Putanja_Slika)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Dat_kreiranja)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Dat_kreiranja)
+        </dd>
+
+    </dl>
+
+    @using (Html.BeginForm()) {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Delete" class="btn btn-default" /> |
+            @Html.ActionLink("Back to List", "Index")
+        </div>
+    }
+</div>

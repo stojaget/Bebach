@@ -1,0 +1,58 @@
+﻿@model Bebach.Models.SearchParameterModel
+@{
+    ViewBag.Title = "Custom Report Viewer";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<script type="text/javascript">
+</script>
+<hgroup class="title">
+    <h1>@ViewBag.Title</h1>
+</hgroup>
+
+<section id="ReportViewer">
+    <h4>Pretraživanje aktivnosti po datumu.</h4>
+    @using (Html.BeginForm(new { ReturnUrl = ViewBag.ReturnUrl }))
+    {
+        @Html.AntiForgeryToken()
+        @Html.ValidationSummary(true)
+
+
+        <fieldset>
+            <legend>Datum od:</legend>
+            <ol>
+                <li>
+                    @Html.LabelFor(m => m.DatumOd)
+                    @Html.TextBoxFor(m => m.DatumOd)
+                    @Html.ValidationMessageFor(m => m.DatumOd)
+                </li>
+            </ol>
+            <legend>do:</legend>
+            <ol>
+                <li>
+                    @Html.LabelFor(m => m.DatumDo)
+                    @Html.TextBoxFor(m => m.DatumDo)
+                    @Html.ValidationMessageFor(m => m.DatumDo)
+                </li>
+            </ol>
+            <label>Vrsta izvješća</label>
+           @Html.EnumDropDownListFor(m => m.TipIzvjesca)
+            <input type="submit" class id="btnSubmit" value="View Report" />
+        </fieldset>
+    }
+</section>
+@if (Model != null)
+{
+    <section class="social" id="ReportDisplayPanel">
+        <h4>Report Viewer Section.</h4>
+        @Html.ActionLink("View Report in PDF Format", "GenerateAndDisplayReport", new { datOd = Model.DatumOd, datDo = Model.DatumDo, format = "pdf" })
+        @Html.ActionLink("Download Report in PDF Format", "DownloadReport", new { datOd = Model.DatumOd, datDo = Model.DatumDo, format = "pdf" })
+        <img src="@Url.Action("GenerateAndDisplayReport", "Report", new { datOd = Model.DatumOd, datDo = Model.DatumDo,format = Model.Format })" />
+    </section>
+}
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}
+
+
+
+

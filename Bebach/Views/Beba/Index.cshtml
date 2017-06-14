@@ -1,0 +1,183 @@
+﻿
+@model Bebach.ViewModels.BebaIndexData
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2 class="alert-info">Pregled bebinog dnevnika</h2>
+
+<p>
+    @Html.ActionLink("Unos nove", "Create")
+</p>
+<h4 class=" alert-info">PODACI O BEBI</h4>
+<table class="table">
+    <tr>
+        <th>Ime</th>
+        <th>Prezime</th>
+        <th>Dat. rođenja</th>
+        <th>OIB</th>
+        <th>Adresa</th>
+        <th>Ime majke</th>
+        <th>Ime oca</th>
+        <th>IBAN</th>
+        <th></th>
+    </tr>
+
+
+    @foreach (var item in Model.Bebas)
+    {
+        string selectedRow = "";
+        if (item.ID == ViewBag.BebaID)
+        {
+            selectedRow = "success";
+        }
+        <tr class="@selectedRow">
+            <td>
+                @Html.DisplayFor(modelItem => item.Ime)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Prezime)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Dat_rod)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.OIB)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Adresa)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Majka)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Otac)
+            </td>
+
+
+            <td>
+                @Html.DisplayFor(modelItem => item.Racun)
+            </td>
+            <td>
+                @Html.ActionLink("Select", "Index", new { id = item.ID }) |
+                @Html.ActionLink("Edit", "Edit", new { id = item.ID }) |
+                @Html.ActionLink("Details", "Details", new { id = item.ID }) |
+                @Html.ActionLink("Delete", "Delete", new { id = item.ID })
+            </td>
+        </tr>
+    }
+
+</table>
+@if (Model.Aktivnosts != null)
+{
+    <h4 class=" alert-info">AKTIVNOSTI BEBE</h4>
+    <table class="table">
+        <tr>
+
+            <th>ID</th>
+            <th>Datum</th>
+            <th>Opis</th>
+            <th>Trajanje</th>
+             <th></th>
+        </tr>
+
+        @foreach (var item in Model.Aktivnosts)
+        {
+
+            <tr class="success">
+
+                <td>
+                    @item.ID
+                </td>
+                <td>
+                    @item.Datum
+                </td>
+                <td>
+                    @item.Opis
+                </td>
+
+                <td>
+                    @item.Trajanje
+                </td>
+               
+                <td>
+                    @Html.ActionLink("Aktivnost", "Index","Aktivnost" , new { bebaID = item.BebaID }, null)
+                </td>
+            </tr>
+        }
+
+    </table>
+}
+@if (Model.Pregleds != null)
+{
+    <h4 class=" alert-info">PREGLEDI BEBE</h4>
+    <table class="table">
+        <tr>
+
+            <th>ID</th>
+            <th>Datum</th>
+            <th>Opis</th>
+            <th>Visina</th>
+            <th>Težina</th>
+            <th></th>
+        </tr>
+        @foreach (var item in Model.Pregleds)
+        {
+
+            <tr class="success">
+
+                <td>
+                    @item.ID
+                </td>
+                <td>
+                    @item.Datum
+                </td>
+                <td>
+                    @item.Opis
+                </td>
+                <td>
+                    @item.Visina
+                </td>
+                <td>
+                    @item.Tezina
+                </td>
+                <td>
+                    @Html.ActionLink("Pregledi", "Index", "Pregled", new { bebaID = item.BebaID }, null)
+                </td>
+            </tr>
+        }
+    </table>
+}
+@if (Model.Slikas != null)
+{
+    <h4 class=" alert-info">SLIKE BEBE</h4>
+    <table class="table">
+        <tr>
+
+            <th>ID</th>
+            <th>Opis</th>
+            <th></th>
+            <th></th>
+        </tr>
+        @foreach (var item in Model.Slikas)
+        {
+
+            <tr class="success">
+
+                <td>
+                    @item.ID
+                </td>
+                <td>
+                    @item.Opis
+                </td>
+                <td>
+                 <img src="@Url.Content(item.Putanja_Thumb)" alt= "Slika" />   
+                </td>
+               
+                <td>
+                    @Html.ActionLink("Slike", "Index", "Slika", new {bebaID = item.BebaID }, null)
+                </td>
+            </tr>
+        }
+    </table>
+}
